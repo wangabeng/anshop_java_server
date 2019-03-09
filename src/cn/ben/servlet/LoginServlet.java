@@ -2,6 +2,7 @@ package cn.ben.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -24,47 +25,27 @@ public class LoginServlet extends HttpServlet {
     public static final String USER = "root";
     public static final String PASSWORD = "";
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8"); // 解决post乱码
+		
 		response.setHeader("Content-Type", "text/html;charset=UTF-8"); // 解决中文乱码
-		response.setHeader("Access-Control-Allow-Origin", "*");  
+		response.setHeader("Access-Control-Allow-Origin", "*");  // 跨域请求
 
-		// response.setContentType("text/html");
+
+		// response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-	
-        
-        try {
-        	//1.加载驱动程序
-			Class.forName("com.mysql.jdbc.Driver");
-	        //2. 获得数据库连接
-	        Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-	        //3.操作数据库，实现增删改查
-	        String sql = "SELECT a.password FROM member a where a.mid=?";
-	        
-	        PreparedStatement pstm = conn.prepareStatement(sql);
-	        String username = "ben";
-	        pstm.setString(1, username);
-	        ResultSet rs = pstm.executeQuery();
+		
+		String formUserName = request.getParameter("userName");
+		
+		String formPassword = request.getParameter("password");
+		
+		
+		System.out.print(formUserName + "and" + formPassword);
+		
+		out.print(formUserName + "and" + formPassword);
+    
 
-	        //如果有数据，rs.next()返回true
-	        while(rs.next()){
-	        	// out.print(rs.getString("password"));
-	        	String queryResult = rs.getString("password");
-	        	if (queryResult.equals("4e4d6c332b6fe62a63afe56171fd3725")) {
-	        		out.print(true);
-	        	}
-	        }
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			out.print("错误");
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			out.print("错误");
-			e.printStackTrace();
-		}
-		
-		
 	}
 
 }
