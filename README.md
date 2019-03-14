@@ -20,3 +20,6 @@ formUserName = new String(formUserName.getBytes("iso8859-1"),"utf-8");
                connectionTimeout="20000"
                redirectPort="8443" URIEncoding="UTF-8" />
 ```
+
+# 无限分类表结构设计示意图  
+![avatar](/img/无限分类表结构.jpg)
