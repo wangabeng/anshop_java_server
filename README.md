@@ -24,7 +24,8 @@ formUserName = new String(formUserName.getBytes("iso8859-1"),"utf-8");
 # 无限分类表结构设计示意图  
 第一版  
 ![avatar](/img/无限分类表结构.jpg)  
-优化版  
+优化版1  
 ![avatar](/img/无限分类表结构-优化.jpg)  
+优化版3 建立关系表  
+![avatar](/img/无限分类表结构-优化2.jpg)
 
-哈哈
