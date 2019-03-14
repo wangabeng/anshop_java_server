@@ -29,6 +29,7 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8"); // 解决post乱码
 		
 		response.setHeader("Content-Type", "text/html;charset=UTF-8"); // 解决中文乱码
+		
 		response.setHeader("Access-Control-Allow-Origin", "*");  // 跨域请求
 
 
@@ -41,11 +42,41 @@ public class LoginServlet extends HttpServlet {
 		String formPassword = request.getParameter("password");
 		
 		
-		System.out.print(formUserName + "and" + formPassword);
 		
-		out.print(formUserName + "and" + formPassword);
-    
+		// 连接数据库 执行查询
+		try {
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(URL, USER,
+					PASSWORD);
+			// 执行查询
+			String sql = "Select a.mid, a.password from member a where a.mid = ? and a.password= ?";
+	        PreparedStatement pstm = conn.prepareStatement(sql);
+	        pstm.setString(1, formUserName);
+	        pstm.setString(2, formPassword);
+	        ResultSet rs = pstm.executeQuery();
+	        
+	        	        
+	        if (rs.next()) {
+	        	out.print("查询到");
+	            String queryPassword = rs.getString("password");
+	            String queryUser = rs.getString("mid");
+	            out.print(queryPassword + "query and" + queryUser);
+	        } else {
+	        	out.print("未查询到");
+	        }
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		// System.out.print(formUserName + "and" + formPassword);
+		
+		// out.print(formUserName + "and" + formPassword);
 
 	}
-
 }
