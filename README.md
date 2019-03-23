@@ -39,3 +39,41 @@ response.setHeader("Access-Control-Allow-Origin", "*");  // 跨域请求
 优化版3 建立关系表  
 ![avatar](/img/无限分类表结构-优化2.jpg)
 
+# 为什么输入 new Date()会提示错误  
+在实例化对象的时候，如果用到时间，引用的jar包必须是import java.util.Date;而不能是import java.sql.Date;如果该段程序里面含有两个时间，分别为import java.util.Date和import java.sql.Date;那在写的时候就要把类型写完整
+
+# 一个泛型使用例子
+```
+import java.util.ArrayList;
+import java.util.Date;
+
+public class Haha {
+
+	public static void main(String[] args) {
+		/*
+		 * ArrayList<Date> dates = new ArrayList<>(); dates.add(new Date());
+		 * System.out.println(dates);
+		 */
+		
+		//
+		GenericStack<String> stringStack = new GenericStack<>();
+		stringStack.push("122");
+		stringStack.push("333");
+		System.out.println(stringStack.get(0));
+
+	}
+}
+
+class GenericStack<E> {
+	private ArrayList<E> lists = new ArrayList<>();
+	public int getSize () {
+		return lists.size();
+	}
+	public void push (E o) {
+		lists.add(o);
+	}
+	public E get (int index) {
+		return lists.get(index);
+	}
+}
+```
