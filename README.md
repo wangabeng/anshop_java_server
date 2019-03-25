@@ -42,6 +42,9 @@ response.setHeader("Access-Control-Allow-Origin", "*");  // 跨域请求
 # 为什么输入 new Date()会提示错误  
 在实例化对象的时候，如果用到时间，引用的jar包必须是import java.util.Date;而不能是import java.sql.Date;如果该段程序里面含有两个时间，分别为import java.util.Date和import java.sql.Date;那在写的时候就要把类型写完整
 
+# 解析泛型最好的最深的  
+https://www.cnblogs.com/coprince/p/8603492.html
+
 # 一个泛型使用例子
 ```
 import java.util.ArrayList;
@@ -74,6 +77,25 @@ class GenericStack<E> {
 	}
 	public E get (int index) {
 		return lists.get(index);
+	}
+}
+```
+
+# 泛型方法例子
+静态泛型方法 传递的参数类型不同 前缀也不同   方法定义public static <E> void print (E[] lists)  方法使用FanxingMethod.<Integer>print(integers);
+
+```
+package test.haha;
+
+public class FanxingMethod {
+	public static void main(String[] args) {
+		Integer[] integers = {1,3, 4};
+		String[] strings = {"1222","ben"};
+		FanxingMethod.<Integer>print(integers);
+		FanxingMethod.<String>print(strings);
+	}
+	public static <E> void print (E[] lists) {
+		System.out.print(lists[1]);
 	}
 }
 ```
