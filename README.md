@@ -102,3 +102,6 @@ public class FanxingMethod {
 
 # 打开所在的文件夹 
 在文件或项目上- 右键  show in - system explorer
+
+# 秒懂java注解
+https://blog.csdn.net/briblue/article/details/73824058
