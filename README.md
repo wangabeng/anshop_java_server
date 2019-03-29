@@ -99,3 +99,6 @@ public class FanxingMethod {
 	}
 }
 ```
+
+# 打开所在的文件夹 
+在文件或项目上- 右键  show in - system explorer
