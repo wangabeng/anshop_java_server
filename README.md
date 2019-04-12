@@ -117,3 +117,32 @@ https://www.oracle.com/technetwork/cn/community/java/apache-maven-getting-starte
 
 # 配置maven仓库地址 并在eclipse创建maven项目  
 https://www.cnblogs.com/yaowen/p/8594876.html
+
+# maven编译web项目显示“软件包 javax.servlet.http 不存在"
+https://blog.csdn.net/tomcat_2014/article/details/50292411
+maven项目编译报错：
+```
+软件包 javax.servlet 不存在
+import javax.servlet.*;
+```
+明明tomcat下面的lib自带有这些包，却依然加载失败,
+
+解决方法一：  
+
+在pom.xml里面重新引入这个包
+```
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>servlet-api</artifactId>
+    <version>2.5</version>
+    <scope>provided</scope>
+</dependency>
+
+```
+但是这个方法容易会跟tomcat里面的包冲突，会报这个错误：
+```
+jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/servlet/Servlet.class  
+```
+解决方法二：  
+右键，buildPath，自己手动从tomcat目录下的lib包里添加外部jar包。  
+
