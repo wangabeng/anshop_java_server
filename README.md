@@ -108,3 +108,12 @@ https://blog.csdn.net/briblue/article/details/73824058
 
 # 秒懂spring
 http://www.cnblogs.com/wmyskxz/p/8820371.html
+
+# java -cp
+-cp 和 -classpath 一样，是指定类运行所依赖其他类的路径，通常是类库，jar包之类，需要全路径到jar包，window上分号“;”  
+
+# maven快速上手
+https://www.oracle.com/technetwork/cn/community/java/apache-maven-getting-started-1-406235-zhs.html
+
+# 配置maven仓库地址 并在eclipse创建maven项目  
+https://www.cnblogs.com/yaowen/p/8594876.html
