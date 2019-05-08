@@ -151,3 +151,27 @@ https://blog.csdn.net/lei133691/article/details/81103318
 eclipse里第一次创建Maven项目时，src/main/java与src/test/java目录都不会出现，这是因为eclipse里的一个默认配置。这两个目录是真实存在的，只是隐藏了。
 
 这时候想要让这两个目录出现，就需要修改以下配置：右击项目-properties-Java Build Path-更改JRE System Library。这里默认的是Execution environment,修改成本地的jdk根目录（jdk/bin的上级目录）
+
+# join()介绍
+join() 定义在Thread.java中。
+join() 的作用：让“主线程”等待“子线程”结束之后才能继续运行。这句话可能有点晦涩，我们还是通过例子去理解：
+```
+// 主线程
+public class Father extends Thread {
+    public void run() {
+        Son s = new Son();
+        s.start();
+        s.join();
+        ...
+    }
+}
+// 子线程
+public class Son extends Thread {
+    public void run() {
+        ...
+    }
+}
+```  
+说明：
+上面的有两个类Father(主线程类)和Son(子线程类)。因为Son是在Father中创建并启动的，所以，Father是主线程类，Son是子线程类。
+在Father主线程中，通过new Son()新建“子线程s”。接着通过s.start()启动“子线程s”，并且调用s.join()。在调用s.join()之后，Father主线程会一直等待，直到“子线程s”运行完毕；在“子线程s”运行完毕之后，Father主线程才能接着运行。 这也就是我们所说的“join()的作用，是让主线程会等待子线程结束之后才能继续运行”！
