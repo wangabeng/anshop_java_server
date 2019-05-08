@@ -146,3 +146,8 @@ jar not loaded. See Servlet Spec 2.3, section 9.7.2. Offending class: javax/serv
 解决方法二：  
 右键，buildPath，自己手动从tomcat目录下的lib包里添加外部jar包。  
 
+# eclipse创建Maven项目没有src/main/java并不能新建的问题  
+https://blog.csdn.net/lei133691/article/details/81103318  
+eclipse里第一次创建Maven项目时，src/main/java与src/test/java目录都不会出现，这是因为eclipse里的一个默认配置。这两个目录是真实存在的，只是隐藏了。
+
+这时候想要让这两个目录出现，就需要修改以下配置：右击项目-properties-Java Build Path-更改JRE System Library。这里默认的是Execution environment,修改成本地的jdk根目录（jdk/bin的上级目录）
